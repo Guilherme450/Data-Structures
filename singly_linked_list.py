@@ -45,12 +45,13 @@ class LinkedList:
             actual = actual.next
         print('Null')
 
-lista = LinkedList()
+list = LinkedList()
 
-lista.add(2005)
-lista.add(1979)
-lista.add(1975)
-lista.add(2013)
-lista.add(2000)
+list.add(2005)
+list.add(1979)
+list.add(1975)
+list.add(2013)
+list.add(2000)
+list.remove(1975)
 
-lista.show()
+list.show()
