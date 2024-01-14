@@ -2,56 +2,80 @@
 # A linked list is a linear data structure.
 # With it we can insert and remove data at run time O(1)
 
-# Creating the class Node
 class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
 
-class LinkedList:
+class Sll:
     def __init__(self):
         self.head = None
 
     def add(self, data):
-        node = Node(data)
-        node.next = self.head
-        self.head = node
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
 
-    def remove(self, data):
-        # Initializing the variables current and previous
-        current = self.head
+    def remove(self, index):
+        current_index = 0
+        current_node = self.head
         previous = None
 
-        while current is not None and current.data != data:
-            previous = current
-            current = current.next
-        # if the data isn't found then the while loop will run until the Null. Therefore the current will be None because it's the tail.
-        if current is None:
-            # Tha data that was did request wasn't found, then return False!
+        while current_node is not None and current_index != index:
+            current_index += 1
+            previous = current_node
+            current_node = current_node.next
+
+        if current_node is None:
+            print(f'Element at index {index} not found!')
             return False
-        # Otherwise, it will verify if the pervious is None, if true we gonna go to the next node, else update the next node of previous node.
+
         if previous is None:
-            self.head = current.next
+            self.head = current_node.next
         else:
-            previous.next = current.next
-        # If the required element was found then return True!
+            previous.next = current_node.next
+
+        print(f'Element at index: {index} removed!')
         return True
 
+    def search(self, index):
+        current_index = 0
+        current_node = self.head
+
+        while current_node is not None and current_index != index:
+            current_index += 1
+            current_node = current_node.next
+
+        if current_node is None:
+            print(f'Element at index {index} not found!')
+            return False
+        else:
+            print(f'element: {current_node.data} at index: {index}')
+
     def show(self):
-        actual = self.head
-        # while data exist it'll be true
-        while actual:
-            print(actual.data, end=' => ')
-            actual = actual.next
+        current_node = self.head
+        current_index = 0
+
+        while current_node:
+            print(f'index: {current_index} value: ({current_node.data})')
+            current_index += 1
+            current_node = current_node.next
         print('Null')
+        print('-------------------')
 
-list = LinkedList()
+list = Sll()
 
-list.add(2005)
-list.add(1979)
-list.add(1975)
-list.add(2013)
-list.add(2000)
-list.remove(1975)
+list.add(18)
+list.add(20)
+list.add(45)
+list.add(10)
+list.add(56)
+list.add(12)
+list.search(0)
 
 list.show()
+
+list.remove(2)
+
+list.show()
+list.search(2)
